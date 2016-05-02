@@ -8,10 +8,11 @@ jdk:
 
 build:
   pre_ci:
-    - docker build -t=480971114143.dkr.ecr.us-east-2.amazonaws.com/test-region .
-
+    #- docker build -t=480971114143.dkr.ecr.us-east-2.amazonaws.com/test-region .
+    - docker build -t=ap-southeast-1#/clusters/region-cluster/services/test-region-service/reg-app .
+    
   pre_ci_boot:
-    image_name: 480971114143.dkr.ecr.us-east-2.amazonaws.com/test-region
+    image_name: ap-southeast-1#/clusters/region-cluster/services/test-region-service/reg-app
     image_tag: latest
     pull: false
     options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
@@ -22,7 +23,7 @@ build:
 
   post_ci:
     #- docker build -t=480971114143.dkr.ecr.us-east-1.amazonaws.com/vidya1-repo1 .
-    - docker push 480971114143.dkr.ecr.us-east-2.amazonaws.com/test-region
+    - docker push ap-southeast-1#/clusters/region-cluster/services/test-region-service/reg-app
     
 integrations:
   hub:
