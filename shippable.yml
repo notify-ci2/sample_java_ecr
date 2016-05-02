@@ -28,6 +28,6 @@ build:
     
 integrations:
   hub:
-    - integrationName: ship-awsecr-anyregion
+    - integrationName: ship-ecr
       type: ecr  
       region: "us-west-2"
