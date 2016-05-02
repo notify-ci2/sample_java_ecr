@@ -19,7 +19,7 @@ build:
 
   ci:
     - ps -eax
-    - ls -al
+    - ls -al  
 
   post_ci:
     #- docker build -t=480971114143.dkr.ecr.us-east-1.amazonaws.com/vidya1-repo1 .
