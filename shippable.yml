@@ -2,34 +2,32 @@ language: java
 
 jdk:
    - openjdk7
-   - oraclejdk7
-   - openjdk6
-   - oraclejdk8
+   #- oraclejdk7
+   #- openjdk6
+   #- oraclejdk8
 
 build:
  # pre_ci:
-  #  - docker build -t=shippabledocker/hitchcock3_sample_node .
-
- # pre_ci_boot:
-  #  image_name: shippabledocker/hitchcock3_sample_node
-   # image_tag: latest
-    #pull: false
-    #options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
+    #- docker build -t=480971114143.dkr.ecr.us-east-2.amazonaws.com/test-region .
+    #- docker build -t=480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region .
+    
+  pre_ci_boot:
+    image_name: drydock/u12jav
+    image_tag: prod
+    pull: false
+    options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
 
   ci:
     - ps -eax
-    - ls -al
+    - ls -al  
 
   post_ci:
-    - docker build -t=480971114143.dkr.ecr.us-east-1.amazonaws.com/vidya1-repo1 .
-    - docker push 480971114143.dkr.ecr.us-east-1.amazonaws.com/vidya1-repo1
+    #- docker build -t=480971114143.dkr.ecr.us-east-1.amazonaws.com/vidya1-repo1 .
+    - docker build -t=480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region:retest .
+    - docker push 480971114143.dkr.ecr.us-west-2.amazonaws.com/test-region:retest
     
 integrations:
   hub:
-    - integrationName: ship-ecr
-      type: ecr   
-    #  branches:
-     #   only:
-      #    - master
-      
-      
+    - integrationName: ship-awsecr-anyregion
+      type: ecr  
+      region: "us-west-2"
